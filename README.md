@@ -114,7 +114,7 @@ Version numbers describe the current lab baseline and may evolve as the project 
 
 ## Development
 
-After cloning the repository and once the CAP application files are present:
+After cloning the repository:
 
 ```bash
 npm install
@@ -127,7 +127,7 @@ Additional environment configuration will be documented as external RAP services
 
 ## Status
 
-**Initial CAP bootstrap / architecture definition.**
+**Initial CAP bootstrap / first service contract pending.**
 
 The remote repository currently establishes the role of the CAP component. Functional external service contracts and RAP integration will be added incrementally.
 

@@ -114,7 +114,7 @@ Las versiones reflejan la línea base actual del laboratorio y podrán evolucion
 
 ## Desarrollo
 
-Después de clonar el repositorio y una vez incorporados los archivos de la aplicación CAP:
+Después de clonar el repositorio:
 
 ```bash
 npm install
