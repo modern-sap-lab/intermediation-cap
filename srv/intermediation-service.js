@@ -10,4 +10,24 @@ export default cds.service.impl(async function () {
   this.on('READ', 'PrincipalProducts', req => {
     return rap.run(req.query);
   });
+
+  const principalActions = [
+    'Suspend',
+    'Reactivate',
+    'SubmitForReview',
+    'Reject',
+    'Deactivate',
+    'Approve'
+  ];
+
+  for (const action of principalActions) {
+    this.on(action, 'Principals', req => {
+      return rap.send({
+        event: action,
+        entity: 'Principals',
+        params: [...req.params],
+        data: req.data
+      });
+    });
+  }
 });
