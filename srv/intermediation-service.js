@@ -6,4 +6,8 @@ export default cds.service.impl(async function () {
   this.on('READ', 'Principals', req => {
     return rap.run(req.query);
   });
+
+  this.on('READ', 'PrincipalProducts', req => {
+    return rap.run(req.query);
+  });
 });
