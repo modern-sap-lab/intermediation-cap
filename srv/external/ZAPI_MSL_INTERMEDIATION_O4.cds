@@ -1,4 +1,4 @@
-/* checksum : 4039ccea8d7445c67614064f85f1feda */
+/* checksum : 6a047d53a7a08262ed202fc506f6a3da */
 @cds.external : true
 @Common.ApplyMultiUnitBehaviorForSortingAndFiltering : true
 @Capabilities.FilterFunctions : [
@@ -51,6 +51,72 @@ service ZAPI_MSL_INTERMEDIATION_O4 {
     @odata.Type : 'Edm.Byte'
     numericSeverity : Integer not null;
     longtextUrl : String;
+  };
+
+  @cds.external : true
+  @cds.persistence.skip : true
+  @Common.Label : 'Principal product consumption'
+  @Common.Messages : SAP__Messages
+  @Capabilities.SearchRestrictions.Searchable : false
+  @Capabilities.InsertRestrictions.RequiredProperties : [ 'PrincipalUUID', 'ExternalCode', 'Name' ]
+  @Capabilities.UpdateRestrictions.DeltaUpdateSupported : true
+  @Capabilities.UpdateRestrictions.NonUpdatableProperties : [ 'PrincipalUUID' ]
+  @Capabilities.UpdateRestrictions.QueryOptions.SelectSupported : true
+  @Capabilities.DeepUpdateSupport.ContentIDSupported : true
+  entity PrincipalProducts {
+    @Core.Computed : true
+    @Common.Label : 'UUID'
+    @Common.QuickInfo : '16 Byte UUID in 16 Bytes (Raw Format)'
+    key ProductUUID : UUID not null;
+    @Common.Label : 'Principal'
+    @Core.Immutable : true
+    @Common.Heading : 'UUID'
+    @Common.QuickInfo : '16 Byte UUID in 16 Bytes (Raw Format)'
+    PrincipalUUID : UUID;
+    @Common.Label : 'Product Code'
+    @Common.Heading : 'Product Code'
+    @Common.QuickInfo : 'Principal Product Code'
+    ExternalCode : String(40) not null;
+    @Common.Label : 'Name'
+    Name : String(100) not null;
+    @Core.Computed : true
+    @Common.IsUpperCase : true
+    @Common.Label : 'Creado por'
+    @Common.QuickInfo : 'Creado por usuario'
+    @Common.DocumentationRef : 'urn:sap-com:documentation:key?=type=DE&id=ABP_CREATION_USER'
+    CreatedBy : String(12) not null;
+    @odata.Precision : 7
+    @odata.Type : 'Edm.DateTimeOffset'
+    @Core.Computed : true
+    @Common.Label : 'Creado el'
+    @Common.Heading : 'Creada el'
+    @Common.QuickInfo : 'Fecha/Hora de creación'
+    @Common.DocumentationRef : 'urn:sap-com:documentation:key?=type=DE&id=ABP_CREATION_TSTMPL'
+    CreatedAt : Timestamp;
+    @Core.Computed : true
+    @Common.IsUpperCase : true
+    @Common.Label : 'Modificados por'
+    @Common.Heading : 'Autor mod.'
+    @Common.QuickInfo : 'Última modificación de instancia local por usuario'
+    @Common.DocumentationRef : 'urn:sap-com:documentation:key?=type=DE&id=ABP_LOCINST_LASTCHANGE_USER'
+    LocalLastChangedBy : String(12) not null;
+    @odata.Precision : 7
+    @odata.Type : 'Edm.DateTimeOffset'
+    @Core.Computed : true
+    @Common.Label : 'Modificados el'
+    @Common.Heading : 'Modif.el'
+    @Common.QuickInfo : 'Fecha y hora de última modificación de la instancia local'
+    @Common.DocumentationRef : 'urn:sap-com:documentation:key?=type=DE&id=ABP_LOCINST_LASTCHANGE_TSTMPL'
+    LocalLastChangedAt : Timestamp;
+    @odata.Precision : 7
+    @odata.Type : 'Edm.DateTimeOffset'
+    @Core.Computed : true
+    @Common.Label : 'Modificados el'
+    @Common.Heading : 'Modif.el'
+    @Common.QuickInfo : 'Fecha y hora de la última modificación'
+    @Common.DocumentationRef : 'urn:sap-com:documentation:key?=type=DE&id=ABP_LASTCHANGE_TSTMPL'
+    LastChangedAt : Timestamp;
+    SAP__Messages : many SAP__Message not null;
   };
 
   @cds.external : true

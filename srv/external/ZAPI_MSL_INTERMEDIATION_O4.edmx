@@ -73,6 +73,21 @@
 <Property Name="LastChangedAt" Type="Edm.DateTimeOffset" Precision="7"/>
 <Property Name="SAP__Messages" Type="Collection(com.sap.gateway.srvd_a2x.zui_msl_intermediation.v0001.SAP__Message)" Nullable="false"/>
 </EntityType>
+<EntityType Name="PrincipalProductsType">
+<Key>
+<PropertyRef Name="ProductUUID"/>
+</Key>
+<Property Name="ProductUUID" Type="Edm.Guid" Nullable="false"/>
+<Property Name="PrincipalUUID" Type="Edm.Guid"/>
+<Property Name="ExternalCode" Type="Edm.String" Nullable="false" MaxLength="40"/>
+<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="100"/>
+<Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12"/>
+<Property Name="CreatedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+<Property Name="LocalLastChangedBy" Type="Edm.String" Nullable="false" MaxLength="12"/>
+<Property Name="LocalLastChangedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+<Property Name="LastChangedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+<Property Name="SAP__Messages" Type="Collection(com.sap.gateway.srvd_a2x.zui_msl_intermediation.v0001.SAP__Message)" Nullable="false"/>
+</EntityType>
 <ComplexType Name="SAP__Message">
 <Property Name="code" Type="Edm.String" Nullable="false"/>
 <Property Name="message" Type="Edm.String" Nullable="false"/>
@@ -107,6 +122,7 @@
 <ReturnType Type="com.sap.gateway.srvd_a2x.zui_msl_intermediation.v0001.PrincipalsType" Nullable="false"/>
 </Action>
 <EntityContainer Name="Container">
+<EntitySet Name="PrincipalProducts" EntityType="com.sap.gateway.srvd_a2x.zui_msl_intermediation.v0001.PrincipalProductsType"/>
 <EntitySet Name="Principals" EntityType="com.sap.gateway.srvd_a2x.zui_msl_intermediation.v0001.PrincipalsType"/>
 </EntityContainer>
 <Annotations Target="SAP__self.PrincipalsType/PrincipalUUID">
@@ -186,6 +202,103 @@
 <Annotation Term="SAP__capabilities.UpdateRestrictions">
 <Record>
 <PropertyValue Property="DeltaUpdateSupported" Bool="true"/>
+<PropertyValue Property="QueryOptions">
+<Record>
+<PropertyValue Property="SelectSupported" Bool="true"/>
+</Record>
+</PropertyValue>
+</Record>
+</Annotation>
+<Annotation Term="SAP__capabilities.DeepUpdateSupport">
+<Record>
+<PropertyValue Property="ContentIDSupported" Bool="true"/>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations Target="SAP__self.PrincipalProductsType/ProductUUID">
+<Annotation Term="SAP__core.Computed"/>
+<Annotation Term="SAP__common.Label" String="UUID"/>
+<Annotation Term="SAP__common.QuickInfo" String="16 Byte UUID in 16 Bytes (Raw Format)"/>
+</Annotations>
+<Annotations Target="SAP__self.PrincipalProductsType/PrincipalUUID">
+<Annotation Term="SAP__common.Label" String="Principal"/>
+<Annotation Term="SAP__core.Immutable"/>
+<Annotation Term="SAP__common.Heading" String="UUID"/>
+<Annotation Term="SAP__common.QuickInfo" String="16 Byte UUID in 16 Bytes (Raw Format)"/>
+</Annotations>
+<Annotations Target="SAP__self.PrincipalProductsType/ExternalCode">
+<Annotation Term="SAP__common.Label" String="Product Code"/>
+<Annotation Term="SAP__common.Heading" String="Product Code"/>
+<Annotation Term="SAP__common.QuickInfo" String="Principal Product Code"/>
+</Annotations>
+<Annotations Target="SAP__self.PrincipalProductsType/Name">
+<Annotation Term="SAP__common.Label" String="Name"/>
+</Annotations>
+<Annotations Target="SAP__self.PrincipalProductsType/CreatedBy">
+<Annotation Term="SAP__core.Computed"/>
+<Annotation Term="SAP__common.IsUpperCase"/>
+<Annotation Term="SAP__common.Label" String="Creado por"/>
+<Annotation Term="SAP__common.QuickInfo" String="Creado por usuario"/>
+<Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=ABP_CREATION_USER"/>
+</Annotations>
+<Annotations Target="SAP__self.PrincipalProductsType/CreatedAt">
+<Annotation Term="SAP__core.Computed"/>
+<Annotation Term="SAP__common.Label" String="Creado el"/>
+<Annotation Term="SAP__common.Heading" String="Creada el"/>
+<Annotation Term="SAP__common.QuickInfo" String="Fecha/Hora de creación"/>
+<Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=ABP_CREATION_TSTMPL"/>
+</Annotations>
+<Annotations Target="SAP__self.PrincipalProductsType/LocalLastChangedBy">
+<Annotation Term="SAP__core.Computed"/>
+<Annotation Term="SAP__common.IsUpperCase"/>
+<Annotation Term="SAP__common.Label" String="Modificados por"/>
+<Annotation Term="SAP__common.Heading" String="Autor mod."/>
+<Annotation Term="SAP__common.QuickInfo" String="Última modificación de instancia local por usuario"/>
+<Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=ABP_LOCINST_LASTCHANGE_USER"/>
+</Annotations>
+<Annotations Target="SAP__self.PrincipalProductsType/LocalLastChangedAt">
+<Annotation Term="SAP__core.Computed"/>
+<Annotation Term="SAP__common.Label" String="Modificados el"/>
+<Annotation Term="SAP__common.Heading" String="Modif.el"/>
+<Annotation Term="SAP__common.QuickInfo" String="Fecha y hora de última modificación de la instancia local"/>
+<Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=ABP_LOCINST_LASTCHANGE_TSTMPL"/>
+</Annotations>
+<Annotations Target="SAP__self.PrincipalProductsType/LastChangedAt">
+<Annotation Term="SAP__core.Computed"/>
+<Annotation Term="SAP__common.Label" String="Modificados el"/>
+<Annotation Term="SAP__common.Heading" String="Modif.el"/>
+<Annotation Term="SAP__common.QuickInfo" String="Fecha y hora de la última modificación"/>
+<Annotation Term="SAP__common.DocumentationRef" String="urn:sap-com:documentation:key?=type=DE&amp;id=ABP_LASTCHANGE_TSTMPL"/>
+</Annotations>
+<Annotations Target="SAP__self.PrincipalProductsType">
+<Annotation Term="SAP__common.Label" String="Principal product consumption"/>
+<Annotation Term="SAP__common.Messages" Path="SAP__Messages"/>
+</Annotations>
+<Annotations Target="SAP__self.Container/PrincipalProducts">
+<Annotation Term="SAP__capabilities.SearchRestrictions">
+<Record>
+<PropertyValue Property="Searchable" Bool="false"/>
+</Record>
+</Annotation>
+<Annotation Term="SAP__capabilities.InsertRestrictions">
+<Record>
+<PropertyValue Property="RequiredProperties">
+<Collection>
+<PropertyPath>PrincipalUUID</PropertyPath>
+<PropertyPath>ExternalCode</PropertyPath>
+<PropertyPath>Name</PropertyPath>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+<Annotation Term="SAP__capabilities.UpdateRestrictions">
+<Record>
+<PropertyValue Property="DeltaUpdateSupported" Bool="true"/>
+<PropertyValue Property="NonUpdatableProperties">
+<Collection>
+<PropertyPath>PrincipalUUID</PropertyPath>
+</Collection>
+</PropertyValue>
 <PropertyValue Property="QueryOptions">
 <Record>
 <PropertyValue Property="SelectSupported" Bool="true"/>
