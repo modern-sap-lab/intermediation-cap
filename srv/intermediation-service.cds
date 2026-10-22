@@ -14,6 +14,5 @@ service IntermediationService {
             action Approve() returns Principals;
         };
 
-    @readonly
     entity PrincipalProducts as projection on RAP.PrincipalProducts;
 }

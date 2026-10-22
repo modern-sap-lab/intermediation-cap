@@ -11,6 +11,18 @@ export default cds.service.impl(async function () {
     return rap.run(req.query);
   });
 
+  this.on('CREATE', 'PrincipalProducts', req => {
+    return rap.run(req.query);
+  });
+
+  this.on('UPDATE', 'PrincipalProducts', req => {
+    return rap.run(req.query);
+  });
+
+  this.on('DELETE', 'PrincipalProducts', req => {
+    return rap.run(req.query);
+  });
+
   const principalActions = [
     'Suspend',
     'Reactivate',
